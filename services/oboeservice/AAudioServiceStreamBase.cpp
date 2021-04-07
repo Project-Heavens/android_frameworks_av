@@ -338,9 +338,6 @@ aaudio_result_t AAudioServiceStreamBase::stop_l() {
 
     setState(AAUDIO_STREAM_STATE_STOPPING);
 
-    // Temporarily unlock because we are joining the timestamp thread and it may try
-    // to acquire mLock.
-    mLock.unlock();
     result = stopTimestampThread();
     mLock.lock();
 
